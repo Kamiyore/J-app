@@ -1,5 +1,6 @@
 # Jaddress-web-application
 
+## skill stack
 Frontend:
 Next.js + React + TypeScript + Tailwind
 
