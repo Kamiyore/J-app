@@ -6,8 +6,8 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint --ext .ts,.tsx .",
-    "typecheck": "tsc -p frontend/tsconfig.json --noEmit"
+    "lint": "npm run lint --prefix frontend",
+    "typecheck": "npm run typecheck --prefix frontend"
   },
   "keywords": [],
   "author": "",
