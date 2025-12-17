@@ -87,7 +87,7 @@ export function PhotoGallery({
     });
   };
 
-  const startLongPress = (photo: Photo, index: number) => {
+  const startLongPress = (photo: Photo) => {
     longPressTriggered.current = false;
     if (longPressTimer.current) clearTimeout(longPressTimer.current);
     longPressTimer.current = setTimeout(() => {
@@ -199,7 +199,7 @@ export function PhotoGallery({
               className={`group relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/10 bg-white/5 shadow-lg transition hover:-translate-y-[2px] hover:border-white/30 ${
                 isSelected ? highlightClass : ''
               }`}
-              onPointerDown={() => startLongPress(photo, index)}
+              onPointerDown={() => startLongPress(photo)}
               onPointerUp={() => {
                 if (longPressTimer.current) cancelLongPress();
                 if (longPressTriggered.current) {
