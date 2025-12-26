@@ -140,3 +140,17 @@ vite.config.ts.timestamp-*
 
 # serena
 .serena/
+
+# Prisma
+apps/api/generated/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# mcp
+.mcp.json
