@@ -10,9 +10,9 @@ import type { AuthUser } from './types/auth.types';
 export class AuthController {
   constructor(private authService: AuthService) {}
 
-  @Post('register')
-  async register(@Body() dto: RegisterDto) {
-    return this.authService.register(dto);
+  @Post('signup')
+  async signup(@Body() dto: RegisterDto) {
+    return this.authService.signup(dto);
   }
 
   @Post('login')

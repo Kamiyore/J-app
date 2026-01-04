@@ -1,5 +1,5 @@
-// Shared DTOs for J-Address application
-import { InboxStatus, ActionType } from '../types';
+// Shared DTOs for J-address application
+import { InboxStatus, ActionType } from "../types";
 
 export interface CreateUserDto {
   email: string;

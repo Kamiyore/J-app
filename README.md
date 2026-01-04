@@ -41,6 +41,7 @@ J-app/
 ## 🛠️ Tech Stack
 
 ### Frontend
+
 - **Next.js 16** - React framework with App Router
 - **React 19** - UI library
 - **TypeScript** - Type safety
@@ -48,17 +49,20 @@ J-app/
 - **Headless UI** - Accessible components
 
 ### Backend
+
 - **NestJS 11** - Node.js framework
 - **Prisma 5** - ORM
 - **PostgreSQL 15** - Database
 - **TypeScript** - Type safety
 
 ### Infrastructure
+
 - **Docker** - Containerization
 - **AWS** - Cloud hosting (EC2/ECS, S3, RDS, CloudFront)
 - **GitHub Actions** - CI/CD
 
 ### Additional Features
+
 - **Redis + BullMQ** - Job queues
 - **JWT + 2FA + RBAC** - Authentication & Authorization
 - **Stripe** - Payment processing
@@ -66,6 +70,7 @@ J-app/
 ## 🚀 Getting Started
 
 ### Prerequisites
+
 - Node.js 18+
 - npm 9+
 - Docker & Docker Compose
@@ -73,12 +78,14 @@ J-app/
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone <repository-url>
    cd J-app
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
@@ -86,22 +93,26 @@ J-app/
 3. **Set up environment variables**
 
    Create `.env` file in `apps/api/`:
+
    ```env
    DATABASE_URL="postgresql://myuser:mypassword@localhost:5432/jaddress_db"
    PORT=3001
    ```
 
    Create `.env.local` file in `apps/web/`:
+
    ```env
    NEXT_PUBLIC_API_URL=http://localhost:3001
    ```
 
 4. **Start the database**
+
    ```bash
    docker-compose up -d db
    ```
 
 5. **Run database migrations**
+
    ```bash
    npm run prisma:generate
    npm run prisma:migrate
@@ -110,11 +121,13 @@ J-app/
 6. **Start development servers**
 
    Option 1 - Run both servers:
+
    ```bash
    npm run dev
    ```
 
    Option 2 - Run separately:
+
    ```bash
    # Terminal 1 - Backend
    npm run dev:api
@@ -131,6 +144,7 @@ J-app/
 ## 📦 NPM Scripts
 
 ### Root Commands
+
 ```bash
 npm run dev              # Start both web and api
 npm run dev:web          # Start frontend only
@@ -143,6 +157,7 @@ npm run clean            # Remove all node_modules
 ```
 
 ### Prisma Commands
+
 ```bash
 npm run prisma:generate  # Generate Prisma client
 npm run prisma:migrate   # Run database migrations
@@ -152,6 +167,7 @@ npm run prisma:studio    # Open Prisma Studio
 ## 📊 Database Schema
 
 ### User
+
 - id (UUID)
 - email (unique)
 - password
@@ -159,6 +175,7 @@ npm run prisma:studio    # Open Prisma Studio
 - updatedAt
 
 ### Inbox
+
 - id (auto-increment)
 - imageUrl (optional)
 - status (RECEIVED | ACTION_REQUESTED | COMPLETED)
@@ -186,22 +203,25 @@ npm install <package> --workspace=packages/shared
 
 ```typescript
 // In apps/web or apps/api
-import { InboxStatus, ActionType, User, Inbox } from '@j-address/shared';
+import { InboxStatus, ActionType, User, Inbox } from "@j-address/shared";
 ```
 
 ## 🐳 Docker
 
 ### Start all services (when Dockerfiles are created)
+
 ```bash
 docker-compose up
 ```
 
 ### Stop all services
+
 ```bash
 docker-compose down
 ```
 
 ### View logs
+
 ```bash
 docker-compose logs -f
 ```

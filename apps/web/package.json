@@ -1,7 +1,7 @@
 {
   "name": "@j-address/web",
   "version": "0.1.0",
-  "description": "J-Address Web - Next.js frontend",
+  "description": "J-address Web - Next.js frontend",
   "private": true,
   "scripts": {
     "dev": "next dev",

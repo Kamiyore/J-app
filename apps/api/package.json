@@ -1,7 +1,7 @@
 {
   "name": "@j-address/api",
   "version": "0.0.1",
-  "description": "J-Address API - NestJS backend",
+  "description": "J-address API - NestJS backend",
   "author": "",
   "private": true,
   "license": "UNLICENSED",

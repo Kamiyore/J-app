@@ -1,7 +1,7 @@
 {
   "name": "jaddress-web-application",
   "version": "1.0.0",
-  "description": "J-Address monorepo - Japanese mail forwarding service",
+  "description": "J-address monorepo - Japanese mail forwarding service",
   "private": true,
   "workspaces": [
     "apps/*",
