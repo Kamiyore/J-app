@@ -13,8 +13,8 @@ assignees: ''
 A clear and concise description of a new feature.
 ->
 
-**Ideal behaviour / what it solves**  
-What is the ideal behaviour, and what problem does this feature solve?
+**Ideal behavior / what it solves**  
+What is the ideal behavior, and what problem does this feature solve?
 ->
 
 ---
