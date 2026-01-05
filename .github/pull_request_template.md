@@ -1,6 +1,6 @@
 ## 🧾 Summary
 
-## <!-- 1 sentence: what + why -->
+<!-- 1 sentence: what + why -->
 
 ## 📦 Size of change
 
@@ -53,8 +53,8 @@
 
 ## 📝 Notes (optional)
 
-## <!-- Extra context, edge cases, follow-ups, or anything reviewers should know -->
+<!-- Extra context, edge cases, follow-ups, or anything reviewers should know -->
 
 ## 👀 Reviewer focus (optional)
 
-## <!-- Where should reviewers look carefully? e.g., auth logic, edge cases, migration, UI behavior -->
+<!-- Where should reviewers look carefully? e.g., auth logic, edge cases, migration, UI behavior -->
