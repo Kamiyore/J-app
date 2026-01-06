@@ -33,11 +33,16 @@ export default function LoginPage() {
 
       const data = await response.json();
 
-      // Store the token
+      // Store the token and user info
       if (data.access_token) {
         localStorage.setItem("access_token", data.access_token);
-        // Redirect to home page
-        window.location.href = "/";
+
+        // Redirect based on user role
+        if (data.user?.role === "ADMIN") {
+          window.location.href = "/admin";
+        } else {
+          window.location.href = "/";
+        }
       }
     } catch (err) {
       setError(

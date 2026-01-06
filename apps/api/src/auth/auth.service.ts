@@ -36,11 +36,11 @@ export class AuthService {
     });
 
     // Generate JWT
-    const token = this.generateToken(user.id, user.email);
+    const token = this.generateToken(user.id, user.email, user.role);
 
     return {
       access_token: token,
-      user: { id: user.id, email: user.email },
+      user: { id: user.id, email: user.email, role: user.role },
     };
   }
 
@@ -60,16 +60,16 @@ export class AuthService {
     }
 
     // Generate JWT
-    const token = this.generateToken(user.id, user.email);
+    const token = this.generateToken(user.id, user.email, user.role);
 
     return {
       access_token: token,
-      user: { id: user.id, email: user.email },
+      user: { id: user.id, email: user.email, role: user.role },
     };
   }
 
-  private generateToken(userId: string, email: string): string {
-    const payload = { sub: userId, email };
+  private generateToken(userId: string, email: string, role: string): string {
+    const payload = { sub: userId, email, role };
     return this.jwtService.sign(payload);
   }
 }
