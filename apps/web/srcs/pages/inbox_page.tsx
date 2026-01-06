@@ -6,7 +6,7 @@ import { PhotoGallery } from '@/srcs/components/photo_gallery';
 
 const gradientStyle = {
   backgroundImage:
-    'linear-gradient(135deg, #114CEE 0%, #0F399F 30%, #000000 55%, #F78D00 80%)',
+    'linear-gradient(180deg, #e2e6ea 0%, #cfd7df 18%, #2a72d6 35%, #0A61D0 100%)',
 };
 
 export default function InboxPage() {
@@ -55,17 +55,82 @@ export default function InboxPage() {
   };
 
   return (
-    <div className='min-h-screen text-white' style={gradientStyle}>
-      <div className='mx-auto flex min-h-screen max-w-6xl flex-col gap-8 px-6 py-12'>
-        <header className='rounded-3xl bg-white/10 px-6 py-8 shadow-xl backdrop-blur'>
-          <div className='flex flex-wrap items-center justify-between gap-3'>
-            <h1 className='text-3xl font-bold sm:text-4xl'>郵便物</h1>
-            <span className='text-base font-semibold text-white/80 sm:text-3xl'>e転居期限: 26.04.09</span>
+    <div className='relative min-h-screen overflow-hidden text-white' style={gradientStyle}>
+      <div className='absolute right-[20%] top-28 z-20 flex items-center gap-20'>
+        <button
+          type='button'
+          className='flex h-10 w-10 items-center justify-center rounded-full bg-white/1 text-black transition hover:-translate-y-1 hover:bg-transparent focus:outline-none focus-visible:ring-4 focus-visible:ring-white/70'
+          aria-label='Flying bird'
+        >
+          <svg viewBox='0 0 256 128' className='h-19 w-14' aria-hidden='true'>
+            <path
+              d='M10 86 C46 22 102 14 128 56 C156 60 206 18 246 86'
+              fill='none'
+              stroke='currentColor'
+              strokeWidth='20'
+              strokeLinecap='round'
+              strokeLinejoin='round'
+            />
+          </svg>
+        </button>
+        <button
+          type='button'
+          className='flex h-10 w-10 items-center justify-center rounded-full bg-white/1 text-black transition hover:-translate-y-1 hover:bg-transparent focus:outline-none focus-visible:ring-4 focus-visible:ring-white/70'
+          aria-label='Flying bird two'
+        >
+          <svg viewBox='0 0 256 128' className='h-10 w-14' aria-hidden='true'>
+            <path
+              d='M10 86 C46 22 102 14 128 56 C156 60 206 18 246 86'
+              fill='none'
+              stroke='currentColor'
+              strokeWidth='20'
+              strokeLinecap='round'
+              strokeLinejoin='round'
+            />
+          </svg>
+        </button>
+        <button
+          type='button'
+          className='flex h-10 w-10 items-center justify-center rounded-full bg-white/1 text-black transition hover:-translate-y-1 hover:bg-transparent focus:outline-none focus-visible:ring-4 focus-visible:ring-white/70'
+          aria-label='Flying bird three'
+        >
+          <svg viewBox='0 0 256 128' className='h-10 w-14' aria-hidden='true'>
+            <path
+              d='M10 86 C46 22 102 14 128 56 C156 60 206 18 246 86'
+              fill='none'
+              stroke='currentColor'
+              strokeWidth='20'
+              strokeLinecap='round'
+              strokeLinejoin='round'
+            />
+          </svg>
+        </button>
+      </div>
+      <div className='pointer-events-none absolute inset-x-0 top-0'>
+        <svg
+          className='h-60 w-full opacity-70'
+          viewBox='0 0 1440 290'
+          preserveAspectRatio='none'
+          aria-hidden='true'
+        >
+          <path
+            d='M0,160 C180,120 360,120 540,150 C720,180 900,230 1080,210 C1260,190 1350,150 1440,120 L1440,0 L0,0 Z'
+            fill='#e6eaef'
+          />
+        </svg>
+      </div>
+      <div className='relative mx-auto flex min-h-screen max-w-6xl flex-col gap-8 px-6 pb-12 pt-0'>
+        <header className='relative left-1/2 right-1/2 w-screen -translate-x-1/2 rounded-none bg-transparent px-6 py-8'>
+          <div className='-mt-2 flex flex-wrap items-center justify-between gap-3'>
+            <span className='text-sm font-semibold text-black sm:text-2xl'>e転居期限: 26.04.09</span>
+            <span className='cursor-pointer text-2xl font-semibold text-black transition hover:underline hover:decoration-black hover:decoration-2 hover:underline-offset-4 hover:drop-shadow-[0_2px_3px_rgba(0,0,0,0.35)] sm:text-3xl'>
+              user name
+            </span>
           </div>
         </header>
 
-        <div className='flex flex-col items-start gap-4 rounded-3xl border border-white/10 bg-white/5 px-6 py-4 shadow-xl backdrop-blur sm:flex-row sm:items-center sm:justify-between'>
-          <div className='grid w-full max-w-xl grid-cols-1 gap-3 sm:grid-cols-3 sm:flex-1'>
+        <div className='mr-auto flex w-full flex-col items-start gap-4 rounded-3xl border border-white/10 bg-white/5 px-6 py-4 shadow-xl backdrop-blur sm:w-[34%] sm:-translate-x-1/8 sm:flex-row sm:items-center'>
+          <div className='grid w-full grid-cols-1 gap-3 sm:grid-cols-3 sm:flex-1'>
             <button
               type='button'
               className={`w-full rounded-full px-4 py-2 text-sm font-semibold transition ${
@@ -100,33 +165,46 @@ export default function InboxPage() {
               廃棄
             </button>
           </div>
-          <span className='whitespace-nowrap text-sm font-semibold text-white/85'>選択済み: {selectedIds.size}</span>
         </div>
 
-        <PhotoGallery
-          title='お荷物'
-          photos={packagesGallery}
-          gridClassName='grid gap-4 sm:grid-cols-3 lg:grid-cols-4'
-          pairWithNextOnSelect
-          selectionMode={selectionMode}
-          onSelectionModeChange={setSelectionMode}
-          selected={selectedIds}
-          onSelectedChange={setSelectedIds}
-          showSelectedBadge={false}
-          selectedHighlightClass={highlightClass}
-        />
+        <div className='mx-auto w-[70%]'>
+          <div className='mb-2 flex items-end justify-between gap-4'>
+            <h2 className='text-2xl font-semibold text-white'>お荷物</h2>
+            <span className='text-sm font-semibold text-white/80'>写真数: 6</span>
+          </div>
+          <PhotoGallery
+            title='お荷物'
+            photos={packagesGallery}
+            gridClassName='grid gap-4 sm:grid-cols-3 lg:grid-cols-4'
+            pairWithNextOnSelect
+            selectionMode={selectionMode}
+            onSelectionModeChange={setSelectionMode}
+            selected={selectedIds}
+            onSelectedChange={setSelectedIds}
+            showSelectedBadge={false}
+            selectedHighlightClass={highlightClass}
+            showHeader={false}
+          />
+        </div>
 
-        <PhotoGallery
-          title='お手紙'
-          photos={lettersGallery}
-          gridClassName='grid gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6'
-          selectionMode={selectionMode}
-          onSelectionModeChange={setSelectionMode}
-          selected={selectedIds}
-          onSelectedChange={setSelectedIds}
-          showSelectedBadge={false}
-          selectedHighlightClass={highlightClass}
-        />
+        <div className='mx-auto w-[70%]'>
+          <div className='mb-2 flex items-end justify-between gap-4'>
+            <h2 className='text-2xl font-semibold text-white'>お手紙</h2>
+            <span className='text-sm font-semibold text-white/80'>写真数: 7</span>
+          </div>
+          <PhotoGallery
+            title='お手紙'
+            photos={lettersGallery}
+            gridClassName='grid gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6'
+            selectionMode={selectionMode}
+            onSelectionModeChange={setSelectionMode}
+            selected={selectedIds}
+            onSelectedChange={setSelectedIds}
+            showSelectedBadge={false}
+            selectedHighlightClass={highlightClass}
+            showHeader={false}
+          />
+        </div>
       </div>
       {selectedIds.size > 0 && (
         <div className='fixed inset-x-0 bottom-0 z-50 border-t border-white/10 bg-white/10 backdrop-blur py-3 px-4'>
