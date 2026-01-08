@@ -2,66 +2,13 @@
 
 import { useState } from 'react';
 
-import { PhotoGallery } from '@/srcs/components/photo_gallery';
-
-type ActionKey = 'forward' | 'scan' | 'discard';
-
-type ActionButtonProps = {
-  actionKey: ActionKey;
-  label: string;
-  ariaLabel: string;
-  svgClassName: string;
-  labelSizeClassName: string;
-  isActive: boolean;
-  onClick: () => void;
-};
-
-const labelShadowClassName = 'drop-shadow-[0_2px_3px_rgba(0,0,0,0.35)]';
+import { ActionButton, GallerySection } from '@/srcs/components/inbox_page_components';
+import type { ActionKey, GalleryPhoto } from '@/srcs/components/inbox_page_components';
 
 const gradientStyle = {
   backgroundImage:
     'linear-gradient(180deg, #d8daddff 3%, #c0dfffff 16%, #6aa2f0ff 36%, #0155c3ff 90%)',
 };
-
-function ActionButton({
-  actionKey,
-  label,
-  ariaLabel,
-  svgClassName,
-  labelSizeClassName,
-  isActive,
-  onClick,
-}: ActionButtonProps) {
-  return (
-    <button
-      type='button'
-      className='group relative flex flex-col items-center text-black focus:outline-none focus-visible:ring-4 focus-visible:ring-white/70'
-      aria-label={ariaLabel}
-      onClick={onClick}
-      data-action={actionKey}
-    >
-      <span className='flex h-10 w-10 items-center justify-center rounded-full bg-white/1 transition group-hover:-translate-y-2 group-hover:bg-transparent'>
-        <svg viewBox='0 0 256 128' className={svgClassName} aria-hidden='true'>
-          <path
-            d='M10 86 C46 22 102 14 128 56 C156 60 206 18 246 86'
-            fill='none'
-            stroke='currentColor'
-            strokeWidth='20'
-            strokeLinecap='round'
-            strokeLinejoin='round'
-          />
-        </svg>
-      </span>
-      <span
-        className={`absolute left-1/2 top-full mt-2 -translate-x-1/2 font-semibold text-black transition opacity-100 group-hover:-translate-y-2 ${labelSizeClassName} ${
-          isActive ? labelShadowClassName : ''
-        }`}
-      >
-        {label}
-      </span>
-    </button>
-  );
-}
 
 export default function InboxPage() {
   const [selectionMode, setSelectionMode] = useState(false);
@@ -70,7 +17,7 @@ export default function InboxPage() {
   const [highlightClass, setHighlightClass] = useState(defaultHighlight);
   const [activeAction, setActiveAction] = useState<ActionKey | null>(null);
 
-  const packagesGallery = [
+  const packagesGallery: GalleryPhoto[] = [
     { id: 'pkg-1', src: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80', alt: 'Parcel at warehouse' },
     { id: 'pkg-2', src: 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=1200&q=80', alt: 'Boxes on trolley' },
     { id: 'pkg-3', src: 'https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1200&q=80', alt: 'Packages stacked' },
@@ -79,7 +26,7 @@ export default function InboxPage() {
     { id: 'pkg-6', src: 'https://images.unsplash.com/photo-1544986581-efac024faf62?auto=format&fit=crop&w=1200&q=80', alt: 'Stacked parcels' },
   ];
 
-  const lettersGallery = [
+  const lettersGallery: GalleryPhoto[] = [
     { id: 'let-1', src: 'https://images.unsplash.com/photo-1519681393784-d120267933ba?auto=format&fit=crop&w=1200&q=80', alt: 'Envelopes pile' },
     { id: 'let-2', src: 'https://images.unsplash.com/photo-1448932252197-d19750584e56?auto=format&fit=crop&w=1200&q=80', alt: 'Mailbox with letters' },
     { id: 'let-3', src: 'https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=1200&q=80', alt: 'Stamped letters' },
@@ -175,44 +122,28 @@ export default function InboxPage() {
       </div>
       <div className='relative mx-auto flex min-h-screen max-w-6xl flex-col gap-8 px-6 pb-12 pt-52'>
 
-        <div className='mx-auto w-full max-w-5xl'>
-          <div className='mb-2 flex items-end justify-between gap-4'>
-            <h2 className='text-2xl font-semibold text-white'>お荷物</h2>
-            <span className='text-sm font-semibold text-white/80'>写真数: {packagesGallery.length}</span>
-          </div>
-          <PhotoGallery
-            title='お荷物'
-            photos={packagesGallery}
-            gridClassName='grid gap-4 sm:grid-cols-3 lg:grid-cols-4'
-            pairWithNextOnSelect
-            selectionMode={selectionMode}
-            onSelectionModeChange={setSelectionMode}
-            selected={selectedIds}
-            onSelectedChange={setSelectedIds}
-            showSelectedBadge={false}
-            selectedHighlightClass={highlightClass}
-            showHeader={false}
-          />
-        </div>
+        <GallerySection
+          title='お荷物'
+          photos={packagesGallery}
+          gridClassName='grid gap-4 sm:grid-cols-3 lg:grid-cols-4'
+          pairWithNextOnSelect
+          selectionMode={selectionMode}
+          onSelectionModeChange={setSelectionMode}
+          selected={selectedIds}
+          onSelectedChange={setSelectedIds}
+          selectedHighlightClass={highlightClass}
+        />
 
-        <div className='mx-auto w-full max-w-5xl'>
-          <div className='mb-2 flex items-end justify-between gap-4'>
-            <h2 className='text-2xl font-semibold text-white'>お手紙</h2>
-            <span className='text-sm font-semibold text-white/80'>写真数: {lettersGallery.length}</span>
-          </div>
-          <PhotoGallery
-            title='お手紙'
-            photos={lettersGallery}
-            gridClassName='grid gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6'
-            selectionMode={selectionMode}
-            onSelectionModeChange={setSelectionMode}
-            selected={selectedIds}
-            onSelectedChange={setSelectedIds}
-            showSelectedBadge={false}
-            selectedHighlightClass={highlightClass}
-            showHeader={false}
-          />
-        </div>
+        <GallerySection
+          title='お手紙'
+          photos={lettersGallery}
+          gridClassName='grid gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6'
+          selectionMode={selectionMode}
+          onSelectionModeChange={setSelectionMode}
+          selected={selectedIds}
+          onSelectedChange={setSelectedIds}
+          selectedHighlightClass={highlightClass}
+        />
       </div>
       {selectedIds.size > 0 && (
         <div className='fixed inset-x-0 bottom-0 z-50 border-t border-white/10 bg-white/10 backdrop-blur py-3 px-4'>
