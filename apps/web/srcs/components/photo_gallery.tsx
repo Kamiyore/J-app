@@ -8,6 +8,7 @@ type Photo = { id: string; src: string; alt: string };
 type Props = {
   title: string;
   subtitle?: string;
+  showHeader?: boolean;
   photos: Photo[];
   gridClassName?: string;
   pairWithNextOnSelect?: boolean;
@@ -22,6 +23,7 @@ type Props = {
 export function PhotoGallery({
   title,
   subtitle,
+  showHeader = true,
   photos,
   gridClassName,
   pairWithNextOnSelect,
@@ -164,31 +166,33 @@ export function PhotoGallery({
       className='space-y-4 rounded-3xl border border-white/10 bg-white/5 p-6 shadow-2xl backdrop-blur'
       onClick={handleBackgroundClick}
     >
-      <div className='flex flex-wrap items-center justify-between gap-3'>
-        <div>
-          <h1 className='text-2xl font-semibold text-white'>{title}</h1>
-          {subtitle && <p className='text-sm text-white/70'>{subtitle}</p>}
+      {showHeader && (
+        <div className='flex flex-wrap items-center justify-between gap-3'>
+          <div>
+            <h1 className='text-2xl font-semibold text-white'>{title}</h1>
+            {subtitle && <p className='text-sm text-white/70'>{subtitle}</p>}
+          </div>
+          <div className='flex items-center gap-2'>
+            {selectionModeValue && showSelectedBadge && (
+              <span className='rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white/85'>
+                選択済み: {selectedCount}
+              </span>
+            )}
+            {selectionModeValue && (
+              <button
+                type='button'
+                className='rounded-full border border-white/40 bg-white/10 px-3 py-1 text-xs font-semibold text-white transition hover:border-white/60 hover:bg-white/20'
+                onClick={(e) => {
+                  e.stopPropagation();
+                  selectAll();
+                }}
+              >
+                全て選択
+              </button>
+            )}
+          </div>
         </div>
-        <div className='flex items-center gap-2'>
-          {selectionModeValue && showSelectedBadge && (
-            <span className='rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white/85'>
-              選択済み: {selectedCount}
-            </span>
-          )}
-          {selectionModeValue && (
-            <button
-              type='button'
-              className='rounded-full border border-white/40 bg-white/10 px-3 py-1 text-xs font-semibold text-white transition hover:border-white/60 hover:bg-white/20'
-              onClick={(e) => {
-                e.stopPropagation();
-                selectAll();
-              }}
-            >
-              全て選択
-            </button>
-          )}
-        </div>
-      </div>
+      )}
 
       <div className={gridClassName ?? 'grid gap-4 sm:grid-cols-2 lg:grid-cols-3'}>
         {photos.map((photo, index) => {
