@@ -8,7 +8,8 @@
     "packages/*"
   ],
   "scripts": {
-    "dev": "docker compose up -d && concurrently \"npm run dev:web\" \"npm run dev:api\"",
+    "dev": "npm run dev:docker && concurrently \"npm run dev:web\" \"npm run dev:api\"",
+    "dev:docker": "docker info > /dev/null 2>&1 || { echo \"[dev] Docker daemon is not running or not reachable. Please start Docker and ensure docker-compose.yml exists before running 'npm run dev'.\"; exit 1; }; docker compose up -d",
     "dev:web": "npm run dev --workspace=apps/web",
     "dev:api": "npm run dev --workspace=apps/api",
     "build": "npm run build --workspaces",
